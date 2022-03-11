@@ -1,3 +1,8 @@
 .my-paragraph {
     background: yellow;
 }
+
+#nasapicture img{
+    height: 100px;
+    width: 100px;
+}
