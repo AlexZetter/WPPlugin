@@ -2,8 +2,8 @@
     background: yellow;
 }
 
-#nasapicture img{
-    height: 100px;
-    width: 100px;
+#nasapictureadmin img{
+    height: 400px;
+    width: 400px;
     border: 10px solid black;
 }

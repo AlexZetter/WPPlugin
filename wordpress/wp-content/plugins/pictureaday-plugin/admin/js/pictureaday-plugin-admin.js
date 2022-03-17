@@ -16,7 +16,7 @@ let url = data.url;
 let nasaInfo = {title, url};
 console.log(title,url );
 
-document.querySelector("#nasapicture").innerHTML = `<img src=${nasaInfo.url}></img><p>${nasaInfo.title}</p>`;
+document.querySelector("#nasapictureadmin").innerHTML = `<img src=${nasaInfo.url}></img><p>${nasaInfo.title}</p>`;
 
 }
 
