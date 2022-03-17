@@ -3,45 +3,45 @@
 
 
 
-function demo_plugin_admin_init()
+function pictureaday_plugin_admin_init()
 {
     // https://developer.wordpress.org/reference/functions/register_setting/
     register_setting(
-        "demo-plugin",          // Option group
-        "demo-plugin-data"      // Option name
+        "pictureaday-plugin",          // Option group
+        "pictureaday-plugin-data"      // Option name
     );
 
     // https://developer.wordpress.org/reference/functions/add_settings_section/
     add_settings_section(
-        "demo-plugin-section-1",            // Id
+        "pictureaday-plugin-section-1",            // Id
         "Image Enabler",                        // Title
-        "demo_plugin_render_section",       // Callback
-        "demo-plugin-settings"              // Page (slug)
+        "pictureaday_plugin_render_section",       // Callback
+        "pictureaday-plugin-settings"              // Page (slug)
     );
 
     // https://developer.wordpress.org/reference/functions/add_settings_field/
     add_settings_field(
-        "demo-plugin-field-1",              // Id
+        "pictureaday-plugin-field-1",              // Id
         "Enable Picture",                             // Title
-        "demo_plugin_render_enable_field",    // Callback
-        "demo-plugin-settings",             // Page (slug)
-        "demo-plugin-section-1",            // Section Id
-        ["label_for" => "demo-plugin-enable"] // <label for="">
+        "pictureaday_plugin_render_enable_field",    // Callback
+        "pictureaday-plugin-settings",             // Page (slug)
+        "pictureaday-plugin-section-1",            // Section Id
+        ["label_for" => "pictureaday-plugin-enable"] // <label for="">
     );
 }
 
 // The 'instruction' text below the section header
-function demo_plugin_render_section()
+function pictureaday_plugin_render_section()
 {
     echo "
     <p>This is the section</p>
     ";
 }
 
-function demo_plugin_render_enable_field()
+function pictureaday_plugin_render_enable_field()
 {
     // https://developer.wordpress.org/reference/functions/get_option/
-    $data = get_option("demo-plugin-data");
+    $data = get_option("pictureaday-plugin-data");
     // https://developer.wordpress.org/reference/functions/esc_attr/
     $enable = esc_attr($data["enable"]);
     $checked = $enable == "enabled" ? "checked" : "";
@@ -50,8 +50,8 @@ function demo_plugin_render_enable_field()
 
     echo "
     <div id='nasapicture'></div>
-    <input type='hidden' name='demo-plugin-data[enable]' id='demo-plugin-enable' value='unabled'>
-    <input type='checkbox' $checked name='demo-plugin-data[enable]' id='demo-plugin-enable' value='enabled'>
+    <input type='hidden' name='pictureaday-plugin-data[enable]' id='pictureaday-plugin-enable' value='unabled'>
+    <input type='checkbox' $checked name='pictureaday-plugin-data[enable]' id='pictureaday-plugin-enable' value='enabled'>
     <p class='description'>Enable or disable picture of the day from NASA</p>
     ";
 
@@ -61,39 +61,39 @@ function demo_plugin_render_enable_field()
 
 
 
-function demo_plugin_admin_view()
+function pictureaday_plugin_admin_view()
 {
     // https://developer.wordpress.org/reference/functions/wp_enqueue_style/
     wp_enqueue_style(
-        "demo-plugin-admin-style",
+        "pictureaday-plugin-admin-style",
         // https://developer.wordpress.org/reference/functions/plugin_dir_url/
-        plugin_dir_url(__FILE__) . "css/demo-plugin-admin.css"
+        plugin_dir_url(__FILE__) . "css/pictureaday-plugin-admin.css"
     );
 
     // https://developer.wordpress.org/reference/functions/wp_enqueue_script/
     wp_enqueue_script(
-        "demo-plugin-admin-script",
-        plugin_dir_url(__FILE__) . "js/demo-plugin-admin.js"
+        "pictureaday-plugin-admin-script",
+        plugin_dir_url(__FILE__) . "js/pictureaday-plugin-admin.js"
     );
 
     // Include our <form> (rather then echo'ing it here)
     require_once __DIR__ . "/../includes/admin-view.php";
 }
 
-function demo_plugin_setup_admin_menu()
+function pictureaday_plugin_setup_admin_menu()
 {
     // https://developer.wordpress.org/reference/functions/add_menu_page/
     add_menu_page(
-        "Demo Plugin Settings",     // Page title
-        "Demo Plugin",              // Menu title
+        "Picture A Day Plugin Settings",     // Page title
+        "Picture a day Plugin",              // Menu title
         "manage_options",           // User permissions
-        "demo-plugin-settings",     // Slug (Page)
-        "demo_plugin_admin_view",   // View function
-        "dashicons-album",          // Menu icon
+        "pictureaday-plugin-settings",     // Slug (Page)
+        "pictureaday_plugin_admin_view",   // View function
+        "dashicons-star-filled",          // Menu icon
         100                         // Menu order (last)
     );
 }
 
 // https://developer.wordpress.org/reference/functions/add_action/
-add_action("admin_menu", "demo_plugin_setup_admin_menu");
-add_action("admin_init", "demo_plugin_admin_init");
+add_action("admin_menu", "pictureaday_plugin_setup_admin_menu");
+add_action("admin_init", "pictureaday_plugin_admin_init");

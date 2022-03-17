@@ -5,4 +5,4 @@ if (!defined("WP_UNINSTALL_PLUGIN")) {
 }
 
 // https://developer.wordpress.org/reference/functions/delete_option/
-delete_option("demo-plugin-data");
+delete_option("pictureaday-plugin-data");
